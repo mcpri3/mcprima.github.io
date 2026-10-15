@@ -66,6 +66,7 @@
   .tile:focus-visible { outline: 2px solid var(--track); outline-offset: 3px; }
   .tile svg.art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .tile .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.2rem .8rem .7rem; color: #fff; background: linear-gradient(to top, rgba(8,20,24,.85) 10%, rgba(8,20,24,0)); }
+  .tile img.art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: 65% 50%; }
   .tile .label { display: block; font-family: var(--serif); font-weight: 600; font-size: 1.02rem; line-height: 1.22; }
   .tile .hint { display: block; font-size: .75rem; opacity: .85; margin-top: .2rem; }
   .tile[aria-expanded="true"] { box-shadow: 0 0 0 3px var(--track); }
@@ -256,6 +257,10 @@
             </svg>
             <span class="cap"><span class="label">Pressures, policy and ecosystem services</span><span class="hint">Click to read more</span></span>
           </button>
+          <button class="tile" type="button" aria-expanded="false" aria-controls="panel-ongoing" id="tile-ongoing">
+            <img class="art" src="ongoing-landscape.jpg" alt="" width="960" height="640" loading="lazy" aria-hidden="true">
+            <span class="cap"><span class="label">Ongoing and ahead</span><span class="hint">Click to read more</span></span>
+          </button>
         </div>
 
         <div class="tile-panel" id="panel-methods" role="region" aria-labelledby="tile-methods">
@@ -282,6 +287,10 @@
             <li>An evaluation of the Natura 2000 policy (<a href="https://linkinghub.elsevier.com/retrieve/pii/S0167880924002329">Link</a>)</li>
             <li>Connectivity-based models of ecosystem services and restoration scenarios, in virtual landscapes (<a href="https://www.sciencedirect.com/science/article/pii/S0006320724005111">Link</a>) and in the Grenoble region (<a href="https://conbio.onlinelibrary.wiley.com/doi/10.1111/cobi.70402">Link</a>)</li>
           </ul>
+        </div>
+        <div class="tile-panel" id="panel-ongoing" role="region" aria-labelledby="tile-ongoing">
+          <h3>AlpiConnect project (OFB-LECA partnership, 2026-2028)</h3>
+          <p>This ongoing research project aims to combine different data types with available knowledge to map landscape connectivity for emblematic vertebrate species in French Alpine regions (the Alps and the Pyrenees), to identify common drivers of the connectivity across species and movement processes and, to work toward integrating this knowledge into public policy.</p>
         </div>
       </div>
     </section>
@@ -377,21 +386,31 @@
         <div class="tile-panel" id="panel-conferences" role="region" aria-labelledby="tile-conferences">
           <h3>Conferences</h3>
           <ul class="pubs">
-          <li><strong>Journée Atelier Biodiversité de l'OSUG, Grenoble, 5 October 2026.</strong> Scénariser la connectivité du paysage : outils et enjeux pour la conservation et la restauration de la biodiversité (with Margot Neyret).</li>
-          <li><strong>European Congress of Conservation Biology, Leiden, July 2026.</strong> Global and local future connectivity trends reveal potential mixed contribution of protected areas to species range shift.</li>
-          <li><strong>International Congress in Ecology and Evolution, Lyon, October 2024.</strong> A comprehensive framework to assess multispecies landscape connectivity for conservation planning.</li>
-          <li><strong>European Congress of Conservation Biology, Bologna, June 2024.</strong> A comprehensive framework to assess multispecies landscape connectivity for conservation planning.</li>
-          <li><strong>Moving2gather, Montpellier, December 2017.</strong> Combining network theory and reaction-advection-diffusion modelling: a mechanistic approach for predicting animal distribution in dynamic environments.</li>
-          <li><strong>Mathematical Models in Ecology and Evolution, London, July 2017.</strong> Combining network theory and reaction-advection-diffusion modelling: a mechanistic approach for predicting animal distribution in dynamic environments.</li>
+          <li><strong>Journée Atelier Biodiversité de l'OSUG, Grenoble (FR), 5 October 2026.</strong><p>Scénariser la connectivité du paysage : outils et enjeux pour la conservation et la restauration de la biodiversité (with Margot Neyret).</li>
+          <li><strong>European Congress of Conservation Biology, Leiden (NL), July 2026.</strong> <p>Global and local future connectivity trends reveal potential mixed contribution of protected areas to species range shift.</li>
+          <li><strong>International Congress in Ecology and Evolution, Lyon (FR), October 2024 & European Congress of Conservation Biology, Bologna (IT), June 2024.</strong> <p>A comprehensive framework to assess multispecies landscape connectivity for conservation planning.</li>
+           <li><strong>Lancement du Système d’Information sur la Biodiversité, online, April 2021. </strong> <p>Biodiversité, Menaces et Aires Protégées: Croisements de données pour la stratégie nationale aires protégées.</li>
+           <li><strong>Conference of the Université Laval Interdisciplinary Centre for Mathematical Modeling, Quebec city (CA), May 2018.</strong><p>Network theory and reaction-advection-diffusion modelling.</li>
+          <li><strong>Moving2gather, Montpellier (FR), December 2017 & Mathematical Models in Ecology and Evolution, London (EN), July 2017.</strong> <p>Combining network theory and reaction-advection-diffusion modelling: a mechanistic approach for predicting animal distribution in dynamic environments.</li>
+          <li><strong>Distribution and demography of the Sturgeon River plains bison: 20 years of research, Waskesiu (CA), March 2017.</strong> <p>Spatial distribution of Sturgeon River plains bison in Prince Albert National Park and management tools. </li>
+          <li><strong>Société Québécoise pour l’Étude Biologique du Comportement, Rimouski (CA), November 2016.</strong> <p>Modelling landscape functional connectivity using networks (Poster).</li>
         </ul>
         </div>
 
         <div class="tile-panel" id="panel-seminars" role="region" aria-labelledby="tile-seminars">
           <h3>Invited and institutional seminars</h3>
           <ul class="pubs">
-          <li><strong>Office Français de la Biodiversité, Gières, June 2025.</strong> Connectivity of protected area networks in metropolitan France.</li>
-          <li><strong>Laboratoire d'Écologie Alpine, Grenoble, March 2025.</strong> Landscape connectivity evaluations: from mechanistic movement models to conservation application.</li>
-          <li><strong>The Canadian Section of The Wildlife Society, online, March 2019 (invited).</strong> Animal habitat selection and movement analyses using step selection functions.</li>
+          <li><strong>Office Français de la Biodiversité, Gières, June 2025.</strong> <p>Connectivity of protected area networks in metropolitan France.</li>
+          <li><strong>Laboratoire d'Écologie Alpine, Grenoble, March 2025.</strong> <p>Landscape connectivity evaluations: from mechanistic movement models to conservation application.</li>
+          <li><strong>Seminars given during my 2019 sabbatical year • University of São Paulo (BR)
+          • Federal University of Mato Grosso, Cuiabá (BR) 
+          • University of Witwatersrand, Johannesburg (ZA) 
+          • University of Pretoria, Pretoria (ZA) 
+          • Nelson Mandela University, George campus (ZA) 
+          • Stellenbosch University, Stellenbosch (ZA)
+          • Etosha Ecological Research Institute and Ongava research centre, Etosha National Park (NA) 
+          • Okavango research institute, Maun (BW)</strong> <p>Development and applications of mechanistic models of animal use of space in heterogeneous and dynamic environments.</li>
+          <li><strong>The Canadian Section of The Wildlife Society, online, March 2019 (invited).</strong> <p>Animal habitat selection and movement analyses using step selection functions.</li>
         </ul>
         </div>
       </div>
