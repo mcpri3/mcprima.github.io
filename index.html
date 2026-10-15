@@ -59,6 +59,30 @@
   summary:focus-visible { outline: 2px solid var(--track); outline-offset: 3px; }
   .pubs .meta { color: var(--muted); font-size: .95rem; display: block; }
   footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 1rem; margin: 1.75rem 0 0; padding: 0; list-style: none; }
+  .tile { all: unset; box-sizing: border-box; position: relative; overflow: hidden; cursor: pointer; aspect-ratio: 1 / 1; display: block; border-radius: 8px; border: 1px solid var(--line); transition: transform .15s ease, box-shadow .15s ease; }
+  .tile:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.18); }
+  .tile:focus-visible { outline: 2px solid var(--track); outline-offset: 3px; }
+  .tile svg.art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .tile .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.2rem .8rem .7rem; color: #fff; background: linear-gradient(to top, rgba(8,20,24,.85) 10%, rgba(8,20,24,0)); }
+  .tile .label { display: block; font-family: var(--serif); font-weight: 600; font-size: 1.02rem; line-height: 1.22; }
+  .tile .hint { display: block; font-size: .75rem; opacity: .85; margin-top: .2rem; }
+  .tile[aria-expanded="true"] { box-shadow: 0 0 0 3px var(--track); }
+  .tile-panel { margin-top: 1.25rem; padding: 1.25rem 1.5rem; border-left: 3px solid var(--track); background: color-mix(in srgb, var(--accent) 5%, var(--bg)); border-radius: 0 6px 6px 0; }
+  .tile-panel[hidden] { display: none; }
+  .tile-panel h3 { margin: 0 0 .75rem; }
+  .tile-panel p { margin: 0 0 .75rem; }
+  .tile-panel ul { margin: 0; padding-left: 1.25rem; list-style: disc; }
+  .tile-panel ul.themes { list-style: none; padding-left: 0; }
+  .tile-panel .themes li { margin-bottom: 0; }
+  .tile-panel .themes li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .tiles.two { grid-template-columns: repeat(2, minmax(0, 12.7rem)); }
+  .tile-panel ul.pubs { list-style: none; padding-left: 0; }
+  .tile-panel .pubs li { margin-bottom: 1rem; }
+  .tile-panel .pubs li:last-child { margin-bottom: 0; }
+  .tile-panel li { margin-bottom: .4rem; }
+  @media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
   @media (max-width: 720px) {
     section { grid-template-columns: 1fr; gap: 1.25rem; }
     .hero { padding-top: 2.5rem; }
@@ -87,7 +111,7 @@
       <div>
         <img class="portrait" alt="Portrait of M.-C. Prima" width="120" height="120" src="data:image/jpeg;base64,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">
         <h1>From individual movement to the connectivity of whole landscapes</h1>
-        <p>I am a postdoctoral researcher in spatial and movement ecology at the Alpine Ecology Lab (LECA), in France (Grenoble). I develop methods to understand, quantify and improve landscape connectivity across scales, and apply them to biodiversity conservation and protected area policy.
+        <p>I am a postdoctoral researcher in spatial and movement ecology at the Alpine Ecology Lab (<a href="https://leca.osug.fr/LECA">LECA</a>), in France (Grenoble). I develop methods to understand, quantify and improve landscape connectivity across scales, and apply them to biodiversity conservation and protected area policy.
         <br><br>I am also a mum of two amazing girls, who keep me busy in my spare time (but totally worth it!) </p>
         <div class="btns">
           <a class="primary" href="#publications">Read my publications</a>
@@ -99,22 +123,81 @@
     <section id="career">
       <h2>Career and education</h2>
       <div class="content">
-        <h3>Positions</h3>
-        <ul class="themes">
-          <li><strong>Postdoctoral researcher #2, LECA, CNRS, Grenoble, 2027 to 2028</strong><span>AlpiConnect (principal investigator): landscape connectivity of emblematic alpine vertebrates, in collaboration with the OFB (Pascal Marchand and Mathieu Garel).</span></li>
-          <li><strong>Postdoctoral researcher #1, LECA, CNRS, Grenoble, 2023 to 2026</strong><span>Building a coherent, resilient and connected protected area network in mainland France (NaturaConnect and MODIC projects), supervised by Wilfried Thuiller.</span></li>
+        <div class="tiles" role="group" aria-label="Career and education">
+        <button class="tile" type="button" aria-expanded="false" aria-controls="panel-positions" id="tile-positions">
+          <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="skyP" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a7a9a"/><stop offset="1" stop-color="#d8e8e8"/></linearGradient></defs>
+            <rect width="200" height="200" fill="url(#skyP)"/>
+            <path d="M0 130 L34 86 L58 108 L92 70 L128 114 L160 90 L200 124 V200 H0Z" fill="#9db9c6"/>
+            <path d="M92 70 L82 84 L92 81 L99 87 L106 79Z" fill="#fff" opacity=".85"/>
+            <rect x="0" y="170" width="200" height="30" fill="#2f5a4a"/>
+            <rect x="22" y="146" width="46" height="30" fill="#e6b455"/>
+            <rect x="74" y="118" width="46" height="58" fill="#d79b34"/>
+            <rect x="126" y="90" width="46" height="86" fill="#c4841a"/>
+            <path d="M149 90 V62" stroke="#17262b" stroke-width="2.4"/>
+            <path d="M149 62 L168 69 L149 76Z" fill="#fff" stroke="#17262b" stroke-width="1.4" stroke-linejoin="round"/>
+            <g fill="#fff" opacity=".9"><circle cx="45" cy="136" r="4"/><circle cx="97" cy="108" r="4"/><circle cx="149" cy="80" r="0"/></g>
+          </svg>
+          <span class="cap"><span class="label">Positions</span><span class="hint">Click to read more</span></span>
+        </button>
+        <button class="tile" type="button" aria-expanded="false" aria-controls="panel-education" id="tile-education">
+          <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="200" fill="#2d6a64"/>
+            <circle cx="160" cy="40" r="46" fill="#3a7f77"/>
+            <circle cx="30" cy="170" r="58" fill="#3a7f77"/>
+            <path d="M24 128 L100 112 L100 170 L24 184Z" fill="#f4efe0" stroke="#17262b" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M176 128 L100 112 L100 170 L176 184Z" fill="#e9e2cb" stroke="#17262b" stroke-width="2" stroke-linejoin="round"/>
+            <g stroke="#9aa79f" stroke-width="2" stroke-linecap="round"><path d="M36 138 L90 127"/><path d="M36 150 L90 139"/><path d="M36 162 L90 151"/><path d="M164 138 L110 127"/><path d="M164 150 L110 139"/></g>
+            <path d="M52 78 V98 C52 108 148 108 148 98 V78Z" fill="#17262b"/>
+            <path d="M100 40 L172 66 L100 92 L28 66Z" fill="#17262b" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M160 70 V100" stroke="#f0b24a" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="160" cy="104" r="5" fill="#f0b24a"/>
+          </svg>
+          <span class="cap"><span class="label">Education</span><span class="hint">Click to read more</span></span>
+        </button>
+        <button class="tile" type="button" aria-expanded="false" aria-controls="panel-earlier" id="tile-earlier">
+          <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <defs><linearGradient id="snowE" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9cfe0"/><stop offset="1" stop-color="#f1f5f8"/></linearGradient></defs>
+            <rect width="200" height="200" fill="url(#snowE)"/>
+            <path d="M0 96 L40 56 L70 80 L110 40 L156 88 L200 64 V120 H0Z" fill="#8aa4b8"/>
+            <path d="M0 120 H200 V200 H0Z" fill="#eef3f6"/>
+            <g fill="#4a5f6e">
+              <g transform="translate(40 168) rotate(-20)"><ellipse cx="0" cy="0" rx="9" ry="7"/><ellipse cx="-9" cy="-11" rx="3.4" ry="4.4"/><ellipse cx="-3" cy="-15" rx="3.4" ry="4.4"/><ellipse cx="4" cy="-15" rx="3.4" ry="4.4"/><ellipse cx="10" cy="-11" rx="3.4" ry="4.4"/></g>
+              <g transform="translate(92 148) rotate(-20)"><ellipse cx="0" cy="0" rx="9" ry="7"/><ellipse cx="-9" cy="-11" rx="3.4" ry="4.4"/><ellipse cx="-3" cy="-15" rx="3.4" ry="4.4"/><ellipse cx="4" cy="-15" rx="3.4" ry="4.4"/><ellipse cx="10" cy="-11" rx="3.4" ry="4.4"/></g>
+              <g transform="translate(146 132) rotate(-20)"><ellipse cx="0" cy="0" rx="9" ry="7"/><ellipse cx="-9" cy="-11" rx="3.4" ry="4.4"/><ellipse cx="-3" cy="-15" rx="3.4" ry="4.4"/><ellipse cx="4" cy="-15" rx="3.4" ry="4.4"/><ellipse cx="10" cy="-11" rx="3.4" ry="4.4"/></g>
+            </g>
+            <g fill="none" stroke="#c4841a" stroke-width="2.2" stroke-dasharray="4 4"><path d="M62 160 C72 156 80 154 80 150"/><path d="M114 140 C124 136 132 134 134 134"/></g>
+          </svg>
+          <span class="cap"><span class="label">Earlier research experience</span><span class="hint">Click to read more</span></span>
+        </button>
+      </div>
+
+        <div class="tile-panel" id="panel-positions" role="region" aria-labelledby="tile-positions">
+          <h3>Positions</h3>
+          <ul class="themes">
+          <li><strong>Postdoctoral researcher #2, LECA, CNRS, Grenoble, 2027 to 2028</strong><span>AlpiConnect (principal investigator): landscape connectivity of emblematic alpine vertebrates, in collaboration with the OFB (<a href="https://cv.hal.science/pascal-marchand-ofb">Pascal Marchand</a> and <a href="https://ofb.hal.science/search/index/q/*/authIdHal_s/mathieu-garel">Mathieu Garel</a>).</span></li>
+          <li><strong>Postdoctoral researcher #1, LECA, CNRS, Grenoble, 2023 to 2026</strong><span>Building a coherent, resilient and connected protected area network in hexagonal France (NaturaConnect and MODIC projects). Supervised by <a href="http://www.will.chez-alice.fr">Wilfried Thuiller</a>.</span></li>
           <li><strong>Project officer, PatriNat, OFB, Paris and Gières, 2020 to 2022</strong><span>Data analyses supporting the national strategy for protected areas.</span></li>
         </ul>
-        <h3>Education</h3>
-        <ul class="themes">
-          <li><strong>PhD in biology, Université Laval, Québec, Canada, 2015 to 2019</strong><span>Space use by large herbivores in a heterogeneous and dynamic environment: methodology and applications. Supervised by Daniel Fortin and Thierry Duchesne. Defended on 12 March 2019.</span></li>
-          <li><strong>Master 2 in Ecology, Biodiversity and Evolution, AgroParisTech, 2014</strong><span>Master's thesis on moose grouping behaviour in relation to wolf recolonization, Grimsö Wildlife Research Station, Sweden.</span></li>
-          <li><strong>Agronomy engineering degree, AgroParisTech, Paris, 2010 to 2014</strong><span>Including a year of international experience in 2012 to 2013: field assistant in Sweden, and research assistant at UBC Okanagan (Canada) on an individual-based model of bear movement and human-bear interactions.</span></li>
+        </div>
+
+        <div class="tile-panel" id="panel-education" role="region" aria-labelledby="tile-education">
+          <h3>Education</h3>
+          <ul class="themes">
+          <li><strong>PhD in biology, Université Laval, Québec, Canada, 2015 to 2019</strong><span>Space use by large herbivores in a heterogeneous and dynamic environment: methodology and applications. Supervised by <a href="https://www.cef-cfr.ca/pmwiki.php?n=Membres.DanielFortin">Daniel Fortin</a> and <a href="https://www.ulaval.ca/la-recherche/repertoire-corps-professoral/thierry-duchesne">Thierry Duchesne</a>. Defended on 12 March 2019.</span></li>
+          <li><strong>Master 2 in Ecology, Biodiversity and Evolution, AgroParisTech, 2014</strong><span>Master's thesis on moose grouping behaviour in relation to wolf recolonization, Grimsö Wildlife Research Station, Sweden. Supervised by <a href="https://www.slu.se/en/profilepages/m/johan-mansson/">Johan Mansson</a> and <a href="https://www.slu.se/en/profilepages/s/hakan-sand/">Hakan Sand</a>.</span></li>
+          <li><strong>Agronomy engineering degree, AgroParisTech, Paris, 2010 to 2014</strong><span>Including a year of international experience in 2012 to 2013.</span></li>
         </ul>
-        <h3>Earlier research experience</h3>
-        <ul class="themes">
-          <li><strong>Research assistant, CEFE, CNRS, Montpellier, 2014</strong><span>Estimating the size of the wolf population in the French Alps with capture-mark-recapture models, supervised by Olivier Gimenez.</span></li>
+        </div>
+
+        <div class="tile-panel" id="panel-earlier" role="region" aria-labelledby="tile-earlier">
+          <h3>Earlier research experience</h3>
+          <ul class="themes">
+          <li><strong>Research assistant, CEFE, CNRS, Montpellier, 2014</strong><span>Estimating the size of the wolf population in the French Alps with capture-mark-recapture models. Supervised by <a href="https://oliviergimenez.github.io">Olivier Gimenez</a>.</span></li>
+          <li><strong>Field assistant, Grimsö Wildlife Research Station, Sweden, 2013</strong><span>Distance sampling, roe deer fawn capture-recapture, cementochronology. Supervised by <a href="https://www.slu.se/en/profilepages/k/petter-kjellander/">Petter Kjellander</a>.</span></li>
+          <li><strong>Research assistant, UBC Okanagan, Canada, 2012 </strong><span>Development of an individual-based model of bear movement and human-bear interactions. Supervised by <a href="https://cmps.ok.ubc.ca/about/contact/rebecca-tyson/">Rebecca Tyson</a>.</span></li>
         </ul>
+        </div>
       </div>
     </section>
 
@@ -122,28 +205,84 @@
       <h2>Research</h2>
       <div class="content">
         <p>My work sits between theoretical ecology, methodological development and conservation applications. I combine mechanistic approaches, based on individual movement behaviour, with phenomenological ones such as niche models, to link local movement mechanisms to large-scale connectivity patterns. I use different types of datasets whether they are real (e.g., occurrences, GPS tracking) or simulated, and I mostly work on vertebrate species (but do some incursions into the invertebrate world). </p>
-        <ul class="themes">
-          <li><strong style="font-size: 1.3em;">Movement ecology and landscape connectivity methods</strong></li>
-             <p>Many research results come from applying modelling tools, which have their own limitations that are often left unquantified. I particularly enjoy quantifying these limitations and finding solutions to them, in order to improve the toolkit available to spatial ecologists. Some examples:<p>
-             <ul class="bullets" style="list-style-type: disc; color: black;">
-            <li>Recommendations to correct statistical biases from autocorrelated movement data (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0169779">Link</a>)
-            <li>Building on the advantages of network and circuit theories, I developed a framework to evaluate simultaneously landscape and protected area connectivity for multiple species (<a href="https://doi.org/10.1111/2041-210X.14444">Link</a>) </li>
-            <li> Spatial network evaluation: simple network models poorly reproduce real connectivity in heterogeneous or dynamic landscapes - case studies with simulated and Alpine ibex movement data in France (<a href="https://doi.org/10.1186/s40462-024-00492-8">Link</a>), and woodland caribou in Canada (<a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2435.13380">Link</a>).
-            </ul>
+        <div class="tiles" role="group" aria-label="Research themes">
+          <button class="tile" type="button" aria-expanded="false" aria-controls="panel-methods" id="tile-methods">
+            <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="skyA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6f93"/><stop offset="1" stop-color="#cfe4ea"/></linearGradient></defs>
+              <rect width="200" height="200" fill="url(#skyA)"/>
+              <circle cx="152" cy="42" r="14" fill="#f6e3a8" opacity=".9"/>
+              <path d="M0 120 L38 66 L62 92 L96 44 L140 108 L168 80 L200 118 V200 H0Z" fill="#8fb0c0"/>
+              <path d="M96 44 L84 62 L96 58 L104 66 L112 56Z" fill="#fff" opacity=".85"/>
+              <path d="M38 66 L30 78 L40 75 L46 80Z" fill="#fff" opacity=".85"/>
+              <path d="M0 150 L30 118 L70 140 L112 112 L160 144 L200 126 V200 H0Z" fill="#4f7d6a"/>
+              <path d="M0 172 L40 154 L90 170 L140 152 L200 168 V200 H0Z" fill="#2f5a4a"/>
+              <path d="M14 186 C40 150 62 184 88 160 S128 138 150 156 S176 128 190 112" fill="none" stroke="#f0b24a" stroke-width="2.6" stroke-dasharray="1 6" stroke-linecap="round"/>
+              <g fill="#f0b24a" stroke="#fff" stroke-width="1.2"><circle cx="14" cy="186" r="3.6"/><circle cx="62" cy="172" r="3.6"/><circle cx="104" cy="152" r="3.6"/><circle cx="150" cy="156" r="3.6"/><circle cx="190" cy="112" r="3.6"/></g>
+            </svg>
+            <span class="cap"><span class="label">Movement ecology and connectivity methods</span><span class="hint">Click to read more</span></span>
+          </button>
+          <button class="tile" type="button" aria-expanded="false" aria-controls="panel-pa" id="tile-pa">
+            <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="200" height="200" fill="#d9d2b8"/>
+              <path d="M0 60 L60 40 L120 70 L200 50 V0 H0Z" fill="#cfc8a8"/>
+              <path d="M0 150 L70 130 L130 160 L200 140 V200 H0Z" fill="#cdc59f"/>
+              <g stroke="#e8e2c9" stroke-width="3" fill="none"><path d="M0 100 H200"/><path d="M110 0 V200"/></g>
+              <path d="M18 24 C34 12 66 16 76 34 C84 52 66 68 44 66 C22 64 8 40 18 24Z" fill="#3e8a5a"/>
+              <path d="M128 18 C150 8 184 20 186 44 C188 64 160 78 140 70 C120 62 112 30 128 18Z" fill="#3e8a5a"/>
+              <path d="M30 118 C50 108 84 116 88 140 C92 164 62 182 42 174 C20 166 14 130 30 118Z" fill="#3e8a5a"/>
+              <path d="M126 122 C148 112 182 126 180 152 C178 176 146 186 130 176 C112 164 110 134 126 122Z" fill="#2f7048"/>
+              <g fill="none" stroke="#c4841a" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="5 5">
+                <path d="M72 44 C96 50 112 46 132 44"/><path d="M48 66 C50 86 44 100 46 116"/>
+                <path d="M164 70 C168 92 162 104 160 122"/><path d="M82 146 C98 142 108 146 126 148"/>
+                <path d="M72 62 C94 92 106 108 130 126"/>
+              </g>
+              <g fill="#fff" stroke="#17262b" stroke-width="1.4"><circle cx="46" cy="42" r="4"/><circle cx="156" cy="44" r="4"/><circle cx="58" cy="146" r="4"/><circle cx="154" cy="150" r="4"/></g>
+            </svg>
+            <span class="cap"><span class="label">Connectivity of protected areas in France</span><span class="hint">Click to read more</span></span>
+          </button>
+          <button class="tile" type="button" aria-expanded="false" aria-controls="panel-pressures" id="tile-pressures">
+            <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="skyC" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9fd0c4"/><stop offset=".55" stop-color="#e6dcb0"/><stop offset="1" stop-color="#c9ced3"/></linearGradient></defs>
+              <rect width="200" height="200" fill="url(#skyC)"/>
+              <circle cx="40" cy="40" r="13" fill="#fff6cf" opacity=".9"/>
+              <rect y="110" width="200" height="90" fill="#6a9a5a"/>
+              <rect x="66" y="110" width="68" height="90" fill="#c9b25a"/>
+              <g stroke="#a89238" stroke-width="3"><path d="M66 128 H134"/><path d="M66 146 H134"/><path d="M66 164 H134"/><path d="M66 182 H134"/></g>
+              <rect x="134" y="110" width="66" height="90" fill="#8d949b"/>
+              <g fill="#2f6a46"><path d="M10 112 L22 78 L34 112Z"/><path d="M30 118 L44 80 L58 118Z"/><path d="M2 140 L16 100 L30 140Z"/><path d="M26 150 L40 112 L54 150Z"/><path d="M8 178 L22 140 L36 178Z"/></g>
+              <g fill="#59616a"><rect x="142" y="82" width="16" height="48"/><rect x="162" y="68" width="14" height="62"/><rect x="180" y="92" width="16" height="38"/></g>
+              <g fill="#f0d98a"><rect x="145" y="88" width="3" height="3"/><rect x="151" y="88" width="3" height="3"/><rect x="145" y="98" width="3" height="3"/><rect x="165" y="76" width="3" height="3"/><rect x="170" y="76" width="3" height="3"/><rect x="165" y="86" width="3" height="3"/><rect x="184" y="100" width="3" height="3"/></g>
+              <path d="M0 196 C60 176 130 190 200 172" fill="none" stroke="#c4841a" stroke-width="2.6" stroke-dasharray="5 5" stroke-linecap="round"/>
+            </svg>
+            <span class="cap"><span class="label">Pressures, policy and ecosystem services</span><span class="hint">Click to read more</span></span>
+          </button>
+        </div>
 
-          <li><strong style="font-size: 1.3em;">Connectivity of protected areas (PA) in hexagonal France (<a href="https://naturaconnect.eu/"> HorizonEurope NaturaConnect</a> and MODIC projects)</strong></li>
-          <p>Quantifying PA connectivity is of utmost importance, both to strategically meet current conservation targets (e.g., 30x30), and to understand the role of PA networks under future environmental changes. Working in collaboration with the OFB and the European NaturaConnect network, we mapped the distribution of ecological continuities for about 400 species, identifying large connectivity gaps for the most threatened species (i.e., including invertebrates), and projected future PA connectivity under climate and land-use change scenarios. More details <a href="https://conbio.onlinelibrary.wiley.com/doi/10.1111/conl.13148">here</a> and <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7592898">here</a> </span></li><p>
+        <div class="tile-panel" id="panel-methods" role="region" aria-labelledby="tile-methods">
+          <h3>Movement ecology and landscape connectivity methods</h3>
+          <p>Many research results come from applying modelling tools, which have their own limitations that are often left unquantified. I particularly enjoy quantifying these limitations and finding solutions to them, in order to improve the toolkit available to spatial ecologists. Some examples:</p>
+          <ul>
+            <li>Recommendations to correct statistical biases from autocorrelated movement data (<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0169779">Link</a>)</li>
+            <li>Building on the advantages of network and circuit theories, I developed a framework to evaluate simultaneously landscape and protected area connectivity for multiple species (<a href="https://doi.org/10.1111/2041-210X.14444">Link</a>)</li>
+            <li>Spatial network evaluation: simple network models poorly reproduce real connectivity in heterogeneous or dynamic landscapes - case studies with simulated and Alpine ibex movement data in France (<a href="https://doi.org/10.1186/s40462-024-00492-8">Link</a>), and woodland caribou in Canada (<a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/1365-2435.13380">Link</a>)</li>
+          </ul>
+        </div>
 
-          <li><strong style="font-size: 1.3em;">Pressures, policy and ecosystem services (<a href="https://www.biodiversa.eu/2023/04/19/reconnect/"> Biodiversa+ Reconnect project</a>) </strong></li>
-          <p>Biodiversity provides many services to humans, yet it is under strong human pressure. My past and ongoing work seek to understand where species are most vulnerable to these pressures, how ecosystem services are affected along different land-use gradients, and whether positive human action, such as connectivity restoration, can help restore these services. This work has led to:<p> 
-          <ul class="bullets" style="list-style-type: disc; color: black;">
-            <li>An extensive mapping of human pressure distribution in hexagonal France (<a href="https://mnhn.hal.science/mnhn-04167557">Link</a>), and oversee territories (<a href="https://mnhn.hal.science/mnhn-04324320/">Guadeloupe</a>, <a href="https://hal.science/PATRINAT/mnhn-04819166v1">La Réunion</a>)</li>
+        <div class="tile-panel" id="panel-pa" role="region" aria-labelledby="tile-pa">
+          <h3>Connectivity of protected areas (PA) in hexagonal France (<a href="https://naturaconnect.eu/">HorizonEurope NaturaConnect</a> and MODIC projects)</h3>
+          <p>Quantifying PA connectivity is of utmost importance, both to strategically meet current conservation targets (e.g., 30x30), and to understand the role of PA networks under future environmental changes. Working in collaboration with the OFB and the European NaturaConnect network, we mapped the distribution of ecological continuities for about 400 species, identifying large connectivity gaps for the most threatened species (i.e., including invertebrates), and projected future PA connectivity under climate and land-use change scenarios. More details <a href="https://conbio.onlinelibrary.wiley.com/doi/10.1111/conl.13148">here</a> and <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7592898">here</a>.</p>
+        </div>
+
+        <div class="tile-panel" id="panel-pressures" role="region" aria-labelledby="tile-pressures">
+          <h3>Pressures, policy and ecosystem services (<a href="https://www.biodiversa.eu/2023/04/19/reconnect/">Biodiversa+ Reconnect project</a>)</h3>
+          <p>Biodiversity provides many services to humans, yet it is under strong human pressure. My past and ongoing work seek to understand where species are most vulnerable to these pressures, how ecosystem services are affected along different land-use gradients, and whether positive human action, such as connectivity restoration, can help restore these services. This work has led to:</p>
+          <ul>
+            <li>An extensive mapping of human pressure distribution in hexagonal France (<a href="https://mnhn.hal.science/mnhn-04167557">Link</a>), and overseas territories (<a href="https://mnhn.hal.science/mnhn-04324320/">Guadeloupe</a>, <a href="https://hal.science/PATRINAT/mnhn-04819166v1">La Réunion</a>)</li>
             <li>An extensive mapping of biodiversity vulnerability to human pressures (<a href="https://hal.science/hal-05417732v1">Link</a>)</li>
             <li>An evaluation of the Natura 2000 policy (<a href="https://linkinghub.elsevier.com/retrieve/pii/S0167880924002329">Link</a>)</li>
             <li>Connectivity-based models of ecosystem services and restoration scenarios, in virtual landscapes (<a href="https://www.sciencedirect.com/science/article/pii/S0006320724005111">Link</a>) and in the Grenoble region (<a href="https://conbio.onlinelibrary.wiley.com/doi/10.1111/cobi.70402">Link</a>)</li>
           </ul>
-        </li>
-        </ul>
+        </div>
       </div>
     </section>
 
@@ -197,8 +336,47 @@
     <section id="talks">
       <h2>Talks and seminars</h2>
       <div class="content">
-        <h3>Conferences</h3>
-        <ul class="pubs">
+        <div class="tiles two" role="group" aria-label="Talks and seminars">
+        <button class="tile" type="button" aria-expanded="false" aria-controls="panel-conferences" id="tile-conferences">
+          <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="200" fill="#1f3a4a"/>
+            <rect x="22" y="22" width="156" height="86" rx="4" fill="#f4f7f8" stroke="#8fb0c0" stroke-width="3"/>
+            <path d="M36 92 L62 70 L84 80 L112 48 L136 62 L164 38" fill="none" stroke="#2b6a8a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M36 98 L66 88 L96 92 L128 76 L164 70" fill="none" stroke="#c4841a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 6"/>
+            <g fill="#2b6a8a"><circle cx="112" cy="48" r="3.4"/><circle cx="164" cy="38" r="3.4"/></g>
+            <g fill="#0f2430">
+              <circle cx="30" cy="138" r="11"/><circle cx="62" cy="136" r="11"/><circle cx="96" cy="138" r="11"/><circle cx="130" cy="136" r="11"/><circle cx="164" cy="138" r="11"/>
+              <path d="M14 168 Q30 148 46 168Z"/><path d="M46 166 Q62 146 78 166Z"/><path d="M80 168 Q96 148 112 168Z"/><path d="M114 166 Q130 146 146 166Z"/><path d="M148 168 Q164 148 180 168Z"/>
+            </g>
+            <g fill="#0a1a23">
+              <circle cx="14" cy="176" r="12"/><circle cx="48" cy="178" r="12"/><circle cx="84" cy="176" r="12"/><circle cx="120" cy="178" r="12"/><circle cx="156" cy="176" r="12"/><circle cx="188" cy="178" r="12"/>
+              <rect x="0" y="188" width="200" height="12"/>
+            </g>
+          </svg>
+          <span class="cap"><span class="label">Conferences</span><span class="hint">Click to read more</span></span>
+        </button>
+        <button class="tile" type="button" aria-expanded="false" aria-controls="panel-seminars" id="tile-seminars">
+          <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="200" fill="#e6dcc3"/>
+            <rect y="150" width="200" height="50" fill="#b98f5c"/>
+            <rect x="18" y="22" width="130" height="94" rx="3" fill="#2f5a4a" stroke="#8a6a3e" stroke-width="5"/>
+            <g stroke="#f4efe0" stroke-width="2" stroke-linecap="round" fill="none"><path d="M46 84 L72 52 L104 70 L126 42 M72 52 L66 92 L104 70 M104 70 L116 98"/></g>
+            <g fill="#f4efe0"><circle cx="46" cy="84" r="4.4"/><circle cx="72" cy="52" r="4.4"/><circle cx="104" cy="70" r="4.4"/><circle cx="126" cy="42" r="4.4"/><circle cx="66" cy="92" r="4.4"/><circle cx="116" cy="98" r="4.4"/></g>
+            <rect x="34" y="122" width="98" height="5" rx="2" fill="#8a6a3e"/>
+            <circle cx="170" cy="78" r="12" fill="#c4841a"/>
+            <path d="M150 150 V112 Q150 98 170 98 Q190 98 190 112 V150Z" fill="#2b6a8a"/>
+            <path d="M156 100 L142 88" stroke="#2b6a8a" stroke-width="6" stroke-linecap="round"/>
+            <rect x="104" y="136" width="34" height="22" rx="2" fill="#7a5a30"/>
+            <rect x="110" y="128" width="22" height="9" rx="1" fill="#17262b"/>
+            <path d="M22 168 H62 V200 H22Z" fill="#8a6a3e"/>
+          </svg>
+          <span class="cap"><span class="label">Invited and institutional seminars</span><span class="hint">Click to read more</span></span>
+        </button>
+      </div>
+
+        <div class="tile-panel" id="panel-conferences" role="region" aria-labelledby="tile-conferences">
+          <h3>Conferences</h3>
+          <ul class="pubs">
           <li><strong>Journée Atelier Biodiversité de l'OSUG, Grenoble, 5 October 2026.</strong> Scénariser la connectivité du paysage : outils et enjeux pour la conservation et la restauration de la biodiversité (with Margot Neyret).</li>
           <li><strong>European Congress of Conservation Biology, Leiden, July 2026.</strong> Global and local future connectivity trends reveal potential mixed contribution of protected areas to species range shift.</li>
           <li><strong>International Congress in Ecology and Evolution, Lyon, October 2024.</strong> A comprehensive framework to assess multispecies landscape connectivity for conservation planning.</li>
@@ -206,39 +384,99 @@
           <li><strong>Moving2gather, Montpellier, December 2017.</strong> Combining network theory and reaction-advection-diffusion modelling: a mechanistic approach for predicting animal distribution in dynamic environments.</li>
           <li><strong>Mathematical Models in Ecology and Evolution, London, July 2017.</strong> Combining network theory and reaction-advection-diffusion modelling: a mechanistic approach for predicting animal distribution in dynamic environments.</li>
         </ul>
-        <h3>Invited and institutional seminars</h3>
-        <ul class="pubs">
+        </div>
+
+        <div class="tile-panel" id="panel-seminars" role="region" aria-labelledby="tile-seminars">
+          <h3>Invited and institutional seminars</h3>
+          <ul class="pubs">
           <li><strong>Office Français de la Biodiversité, Gières, June 2025.</strong> Connectivity of protected area networks in metropolitan France.</li>
           <li><strong>Laboratoire d'Écologie Alpine, Grenoble, March 2025.</strong> Landscape connectivity evaluations: from mechanistic movement models to conservation application.</li>
           <li><strong>The Canadian Section of The Wildlife Society, online, March 2019 (invited).</strong> Animal habitat selection and movement analyses using step selection functions.</li>
         </ul>
+        </div>
       </div>
     </section>
 
     <section id="teaching">
       <h2>Supervision, teaching and service</h2>
       <div class="content">
-        <h3>Student supervision</h3>
-        <ul class="themes">
+        <div class="tiles" role="group" aria-label="Supervision, teaching and service">
+        <button class="tile" type="button" aria-expanded="false" aria-controls="panel-supervision" id="tile-supervision">
+          <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="200" fill="#d6e6df"/>
+            <rect y="160" width="200" height="40" fill="#9fbfb2"/>
+            <rect x="62" y="30" width="76" height="52" rx="3" fill="#fff" stroke="#2b6a8a" stroke-width="2.4"/>
+            <path d="M72 70 L88 54 L102 62 L126 40" fill="none" stroke="#2b6a8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="126" cy="40" r="3.4" fill="#c4841a"/>
+            <circle cx="52" cy="104" r="15" fill="#c4841a"/>
+            <path d="M24 170 V138 Q24 120 52 120 Q80 120 80 138 V170Z" fill="#2b6a8a"/>
+            <path d="M76 132 L92 92" stroke="#2b6a8a" stroke-width="7" stroke-linecap="round"/>
+            <circle cx="140" cy="122" r="12" fill="#e0a443"/>
+            <path d="M118 170 V148 Q118 134 140 134 Q162 134 162 148 V170Z" fill="#2f5a4a"/>
+            <path d="M118 150 L102 112" stroke="#2f5a4a" stroke-width="6" stroke-linecap="round" opacity="0"/>
+            <g stroke="#17262b" stroke-width="2.2" stroke-linecap="round"><path d="M165 146 L180 130"/></g>
+            <path d="M178 126 q6 -10 14 -6 q-4 10 -14 6Z" fill="#4f9a6a"/>
+            <path d="M178 126 V150" stroke="#4f9a6a" stroke-width="3" stroke-linecap="round" opacity="0"/>
+          </svg>
+          <span class="cap"><span class="label">Student supervision</span><span class="hint">Click to read more</span></span>
+        </button>
+        <button class="tile" type="button" aria-expanded="false" aria-controls="panel-teaching" id="tile-teaching">
+          <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="200" fill="#25435a"/>
+            <rect x="18" y="24" width="164" height="96" rx="4" fill="#f4f7f8"/>
+            <text x="100" y="62" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="17" fill="#17262b">∂u/∂t = D∇²u</text>
+            <path d="M34 106 C58 106 66 98 80 74 S104 98 126 106 S158 106 168 106" fill="none" stroke="#2b6a8a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M34 106 C70 106 80 90 100 82 S130 104 168 106" fill="none" stroke="#c4841a" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="1 5"/>
+            <rect x="24" y="150" width="86" height="14" fill="#c4841a"/>
+            <rect x="30" y="164" width="76" height="14" fill="#2f5a4a"/>
+            <rect x="22" y="178" width="92" height="14" fill="#7fbad6"/>
+            <rect x="140" y="146" width="42" height="46" rx="3" fill="#8a6a3e"/>
+            <rect x="148" y="136" width="26" height="12" rx="2" fill="#17262b"/>
+          </svg>
+          <span class="cap"><span class="label">Teaching</span><span class="hint">Click to read more</span></span>
+        </button>
+        <button class="tile" type="button" aria-expanded="false" aria-controls="panel-commitment" id="tile-commitment">
+          <svg class="art" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="200" height="200" fill="#efe6cf"/>
+            <circle cx="100" cy="100" r="78" fill="#e4d8b8"/>
+            <g stroke="#2b6a8a" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M100 100 L100 40 M100 100 L158 82 M100 100 L136 152 M100 100 L64 152 M100 100 L42 82"/><path d="M100 40 L158 82 L136 152 L64 152 L42 82 Z" stroke-dasharray="2 6"/></g>
+            <g fill="#2b6a8a"><circle cx="100" cy="34" r="9"/><circle cx="162" cy="80" r="9"/><circle cx="138" cy="156" r="9"/><circle cx="62" cy="156" r="9"/><circle cx="38" cy="80" r="9"/></g>
+            <g fill="#2b6a8a"><path d="M86 56 Q100 44 114 56Z" transform="translate(0 -2)"/><path d="M148 102 Q162 90 176 102Z"/><path d="M124 178 Q138 166 152 178Z"/><path d="M48 178 Q62 166 76 178Z"/><path d="M24 102 Q38 90 52 102Z"/></g>
+            <circle cx="100" cy="100" r="15" fill="#c4841a" stroke="#fff" stroke-width="2.4"/>
+          </svg>
+          <span class="cap"><span class="label">Collective commitment</span><span class="hint">Click to read more</span></span>
+        </button>
+      </div>
+
+        <div class="tile-panel" id="panel-supervision" role="region" aria-labelledby="tile-supervision">
+          <h3>Student supervision</h3>
+          <ul class="themes">
           <li><strong>Noémie Franco, 2026, Master 2, Université de Toulouse</strong><span>Understanding protected area connectivity in France and potential for improvement under expansion scenarios.</span></li>
           <li><strong>Lise Layotte, 2025, Master 2, Université de Montpellier</strong><span>Species dimension reduction in multi-species landscape connectivity assessments (co-supervised with W. Thuiller). Article in prep. </span></li>
           <li><strong>Lucia Oliveira-Cruz, 2024, Master 2, Institut Agro Rennes-Angers</strong><span>Assessment of protected area connectivity for Lepidoptera in France (co-supervised with W. Thuiller). Co-author of a published article.</span></li>
           <li><strong>Virginie Vanlandeghem, 2016 to 2019, Master's, Université Laval</strong><span>Effects of the spatial configuration of logging on woodland caribou mortality in the boreal forest (support for data curation and statistical analyses). Co-author of a published article.</span></li>
           <li><strong>Marc-Oliver Brouard, 2016 to 2017, Bachelor's, Université Laval</strong><span>Movement speed and memory in the predator-prey shell game (co-supervised with D. Fortin).</span></li>
         </ul>
-        <h3>Teaching</h3>
-        <ul class="themes">
+        </div>
+
+        <div class="tile-panel" id="panel-teaching" role="region" aria-labelledby="tile-teaching">
+          <h3>Teaching</h3>
+          <ul class="themes">
           <li><strong>Teaching assistant in biostatistics, Université Laval, 2018</strong><span>48 hours, Department of Biology.</span></li>
           <li><strong>Guest lecture, Université Laval, 2018</strong><span>Reaction-advection-diffusion models applied to networks, third-year mathematical modelling course (3 hours).</span></li>
         </ul>
-        <h3>Collective commitment</h3>
-        <ul class="themes">
+        </div>
+
+        <div class="tile-panel" id="panel-commitment" role="region" aria-labelledby="tile-commitment">
+          <h3>Collective commitment</h3>
+          <ul class="themes">
           <li><strong>Member of the Science popularization and communication group, LECA, since 2026</strong><span> Pauses déj' de la science - Éclats de sciences 2026, « Le monde fascinant de la biodiversité », Université Grenoble Alpes.</span></li>
           <li><strong>Scientific and technical coordination of the OSUG Biodiversity Workshop Day, 5 October 2026</strong><span>About 60 participants. <a href="https://www.osug.fr/missions/recherche/ateliers-transversaux/biodiversite/evenements-scientifiques-passes/journee-atelier-biodiviersite-paysage.html">Details and programme</a></span></li>
           <li><strong>Coordination of LECA team meetings, 2025</strong></li>
           <li><strong>Technical coordination of the NaturaConnect annual consortium meeting, Grenoble, September 2024</strong><span>About 100 participants.</span></li>
           <li><strong>Member of the Québec woodland caribou recovery team, 2017 to 2018</strong></li>
         </ul>
+        </div>
       </div>
     </section>
 
@@ -247,7 +485,7 @@
       <div class="content">
         <ul class="themes">
           <li><strong>AlpiConnect, 2026 to 2028</strong><span>Partnership agreement with the Office Français de la Biodiversité, principal investigator, 200 k€.</span></li>
-          <li><strong>MODIC, 2023 to 2026</strong><span>Partnership agreement with the Office Français de la Biodiversité, work package leader (PI: Wilfried THuiller), 240 k€.</span></li>
+          <li><strong>MODIC, 2023 to 2026</strong><span>Partnership agreement with the Office Français de la Biodiversité, work package leader (PI: Wilfried Thuiller), 240 k€.</span></li>
           <li><strong>LECA internal funding, 2024</strong><span>Pilot project supporting a master's internship, 4,000 €.</span></li>
           <li><strong>Honour roll, Université Laval, 2019</strong><span>For the PhD thesis in biology.</span></li>
           <li><strong>Excellence scholarship, 2018</strong><span>Richard Bernard fund and Provancher Society, Université Laval, 3,000 CAD.</span></li>
@@ -261,6 +499,7 @@
       <h2>Hobbies</h2>
       <div class="content">
         <p>Apart from coding and sitting at my desk, I enjoy travelling, hiking, swimming (in pools, lakes and the sea), cooking and, above all doing pottery. I also tried sewing, but gave up after my tenth ill-fitting garment. </p>
+
       </div>
     </section>
 
@@ -276,5 +515,26 @@
 
   <footer>© 2026 M.-C. Prima</footer>
 </div>
+<script>
+(function () {
+  document.querySelectorAll('.tiles').forEach(function (group) {
+    var scope = group.parentElement;
+    var tiles = group.querySelectorAll('.tile');
+    var panels = scope.querySelectorAll('.tile-panel');
+    panels.forEach(function (p) { p.hidden = true; });
+    tiles.forEach(function (t) {
+      t.addEventListener('click', function () {
+        var open = t.getAttribute('aria-expanded') === 'true';
+        tiles.forEach(function (o) { o.setAttribute('aria-expanded', 'false'); });
+        panels.forEach(function (p) { p.hidden = true; });
+        if (!open) {
+          t.setAttribute('aria-expanded', 'true');
+          document.getElementById(t.getAttribute('aria-controls')).hidden = false;
+        }
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>
