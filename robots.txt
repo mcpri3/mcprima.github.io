@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mcpri3.github.io/mcprima.github.io/sitemap.xml
